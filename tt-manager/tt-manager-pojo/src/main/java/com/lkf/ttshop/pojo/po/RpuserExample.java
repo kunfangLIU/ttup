@@ -765,7 +765,7 @@ public class RpuserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeletedIn(List<String> values) {
+        public Criteria andDeletedIn(List<Long> values) {
             addCriterion("Deleted in", values, "deleted");
             return (Criteria) this;
         }

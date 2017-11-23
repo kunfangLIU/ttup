@@ -102,7 +102,7 @@ public class Rpuser {
     }
 
     public void setDeleted(String deleted) {
-        this.deleted = deleted == null ? null : deleted.trim();
+        this.deleted = deleted ;
     }
 
     public String getUserremark() {

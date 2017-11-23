@@ -1,5 +1,7 @@
 package com.lkf.ttshop.service.impl;
 
+import com.dhc.ttshop.pojo.po.TbItem;
+import com.dhc.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.dao.RpuserCustomMapper;
 import com.lkf.ttshop.dao.RpuserMapper;
 import com.lkf.ttshop.dto.Order;
@@ -45,5 +47,18 @@ public class RpUserServiceImpl implements RpUserService{
         rs.setRows(rows);
         rs.setTotal(total);
         return rs;
+    }
+
+    @Override
+    public int removeUserByIds( String b,List<Long> ids) {
+        //创建商品的空对象
+        Rpuser user = new Rpuser();
+        user.setDeleted(b);
+        //下面的三行只是准备查询的条件
+        TbItemExample example = new TbItemExample();
+        TbItemExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        //真正的执行查询
+        return rpuserDao.updateByExampleSelective(user, example);
     }
 }

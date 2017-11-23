@@ -1,5 +1,6 @@
 package com.lkf.ttshop.dao;
 
+import com.dhc.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.pojo.po.Rpuser;
 import com.lkf.ttshop.pojo.po.RpuserExample;
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +23,7 @@ public interface RpuserMapper {
 
     Rpuser selectByPrimaryKey(String id);
 
-    int updateByExampleSelective(@Param("record") Rpuser record, @Param("example") RpuserExample example);
+    int updateByExampleSelective(@Param("record") Rpuser record, @Param("example") TbItemExample example);
 
     int updateByExample(@Param("record") Rpuser record, @Param("example") RpuserExample example);
 

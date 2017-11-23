@@ -7,6 +7,8 @@ import com.lkf.ttshop.pojo.po.Rpuser;
 import com.lkf.ttshop.pojo.vo.RpUserCustom;
 import com.lkf.ttshop.pojo.vo.RpUserQuery;
 
+import java.util.List;
+
 /**
  * User: CTKJ-0106
  * Date: 2017/11/23
@@ -28,5 +30,11 @@ public interface RpUserService {
      * @return
      */
     Result<RpUserCustom> listUsers(Page page, RpUserQuery query, Order order);
+    /**
+     * 通过是否删除批量修改用户的状态
+     * @param ids
+     * @return
+     */
+    int removeUserByIds(String b,List<Long> ids);
 
 }

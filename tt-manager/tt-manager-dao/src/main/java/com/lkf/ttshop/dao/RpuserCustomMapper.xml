@@ -8,8 +8,18 @@
   </sql>
   <sql id="Where_Clause">
     <where>
+      i.Deleted != '1'
       <if test="query != null and query.username != null and query.username != '' ">
         and i.username like '%${query.username}%'
+      </if>
+      <if test="query != null and query.useraccount != null and query.useraccount != '' ">
+        and i.useraccount like '%${query.useraccount}%'
+      </if>
+      <if test="query != null and query.Mobile != null and query.Mobile != '' ">
+        and i.Mobile like '%${query.Mobile}%'
+      </if>
+      <if test="query != null and query.userstatus != null and query.userstatus != '' ">
+        and i.userstatus like '%${query.userstatus}%'
       </if>
     </where>
   </sql>

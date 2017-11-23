@@ -9,8 +9,12 @@
     <div style="padding: 5px; background-color: #fffcf9;">
         <label>用户名：</label>
         <input class="easyui-textbox" type="text" id="username">
+        <label>手机号：</label>
+        <input class="easyui-textbox" type="text" id="mobile">
+        <label>帐户：</label>
+        <input class="easyui-textbox" type="text" id="useraccount">
         <label>状态：</label>
-        <select id="status" class="easyui-combobox">
+        <select id="userstatus" class="easyui-combobox">
             <option value="">全部</option>
             <option value="0">禁用</option>
             <option value="1">启用</option>
@@ -23,8 +27,6 @@
         <button onclick="add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
         <button onclick="edit()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</button>
         <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
-       <%-- <button onclick="down()" class="easyui-linkbutton" data-options="iconCls:'icon-down',plain:true">下架</button>
-        <button onclick="up()" class="easyui-linkbutton" data-options="iconCls:'icon-up',plain:true">上架</button>--%>
     </div>
 </div>
 
@@ -34,6 +36,14 @@
     function searchForm(){
         $('#rg').datagrid('load',{
             username:$('#username').val(),
+            mobile:$('#mobile').val(),
+            useraccount:$('#useraccount').val(),
+            userstatus:$('#userstatus').combobox('getValue')
+        });
+    }
+    function searchForm(){
+        $('#dg').datagrid('load',{
+            title:$('#title').val(),
             status:$('#status').combobox('getValue')
         });
     }
@@ -43,15 +53,9 @@
     function  edit() {
         console.log('edit');
     }
-   /* function  down() {
-        console.log('down');
-    }
-    function  up() {
-        console.log('up');
-    }*/
     function  remove() {
         //获取选中的行
-        var selectRows = $('#dg').datagrid('getSelections');
+        var selectRows = $('#rg').datagrid('getSelections');
         //没有选中任何行
         if(selectRows.length == 0){
             $.messager.alert('提示','未选中记录','warning');
@@ -69,12 +73,12 @@
                 //ajax提交数组给后台
                 $.post(
                     //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
-                    'items/batch',
+                    'users/batch',
                     //data:提交哪些数据给后台进行处理
                     {'ids[]':ids},
                     //function:处理后成功回调的函数
                     function(data){
-                        $('#dg').datagrid('reload');
+                        $('#rg').datagrid('reload');
                     },
                     //datatype:返回的数据类型
                     'json'
@@ -83,7 +87,6 @@
             }
         });
     }
-
     /*初始化数据表格*/
     $('#rg').datagrid({
         pageSize:10,
