@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkf.ttshop.dao.RpuserMapper" >
+  <resultMap id="BaseResultMap" type="com.lkf.ttshop.pojo.po.Rpuser" >
+    <id column="Id" property="id" jdbcType="DECIMAL" />
+    <result column="useraccount" property="useraccount" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="userstatus" property="userstatus" jdbcType="CHAR" />
+    <result column="DeptId" property="deptid" jdbcType="DECIMAL" />
+    <result column="Deleted" property="deleted" jdbcType="CHAR" />
+    <result column="userremark" property="userremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, useraccount, password, username, Sex, Mobile, Email, userstatus, DeptId, Deleted, 
+    userremark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lkf.ttshop.pojo.po.RpuserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rpuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from rpuser
+    where Id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from rpuser
+    where Id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lkf.ttshop.pojo.po.RpuserExample" >
+    delete from rpuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lkf.ttshop.pojo.po.Rpuser" >
+    insert into rpuser (Id, useraccount, password, 
+      username, Sex, Mobile, 
+      Email, userstatus, DeptId, 
+      Deleted, userremark)
+    values (#{id,jdbcType=DECIMAL}, #{useraccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{userstatus,jdbcType=CHAR}, #{deptid,jdbcType=DECIMAL}, 
+      #{deleted,jdbcType=CHAR}, #{userremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lkf.ttshop.pojo.po.Rpuser" >
+    insert into rpuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="useraccount != null" >
+        useraccount,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="userstatus != null" >
+        userstatus,
+      </if>
+      <if test="deptid != null" >
+        DeptId,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+      <if test="userremark != null" >
+        userremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="useraccount != null" >
+        #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null" >
+        #{userstatus,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="userremark != null" >
+        #{userremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lkf.ttshop.pojo.po.RpuserExample" resultType="java.lang.Integer" >
+    select count(*) from rpuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rpuser
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useraccount != null" >
+        useraccount = #{record.useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        Sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        Email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userstatus != null" >
+        userstatus = #{record.userstatus,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptId = #{record.deptid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deleted != null" >
+        Deleted = #{record.deleted,jdbcType=CHAR},
+      </if>
+      <if test="record.userremark != null" >
+        userremark = #{record.userremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rpuser
+    set Id = #{record.id,jdbcType=DECIMAL},
+      useraccount = #{record.useraccount,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      Sex = #{record.sex,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      Email = #{record.email,jdbcType=VARCHAR},
+      userstatus = #{record.userstatus,jdbcType=CHAR},
+      DeptId = #{record.deptid,jdbcType=DECIMAL},
+      Deleted = #{record.deleted,jdbcType=CHAR},
+      userremark = #{record.userremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lkf.ttshop.pojo.po.Rpuser" >
+    update rpuser
+    <set >
+      <if test="useraccount != null" >
+        useraccount = #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null" >
+        userstatus = #{userstatus,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptId = #{deptid,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="userremark != null" >
+        userremark = #{userremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lkf.ttshop.pojo.po.Rpuser" >
+    update rpuser
+    set useraccount = #{useraccount,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      userstatus = #{userstatus,jdbcType=CHAR},
+      DeptId = #{deptid,jdbcType=DECIMAL},
+      Deleted = #{deleted,jdbcType=CHAR},
+      userremark = #{userremark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkf.ttshop.dao.RpdeptMapper" >
+  <resultMap id="BaseResultMap" type="com.lkf.ttshop.pojo.po.Rpdept" >
+    <id column="Id" property="id" jdbcType="DECIMAL" />
+    <result column="deptname" property="deptname" jdbcType="VARCHAR" />
+    <result column="deptcode" property="deptcode" jdbcType="VARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="DECIMAL" />
+    <result column="OrderNum" property="ordernum" jdbcType="DECIMAL" />
+    <result column="deptlevel" property="deptlevel" jdbcType="DECIMAL" />
+    <result column="Deleted" property="deleted" jdbcType="CHAR" />
+    <result column="deptremark" property="deptremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, deptname, deptcode, ParentId, OrderNum, deptlevel, Deleted, deptremark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lkf.ttshop.pojo.po.RpdeptExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rpdept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from rpdept
+    where Id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from rpdept
+    where Id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lkf.ttshop.pojo.po.RpdeptExample" >
+    delete from rpdept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lkf.ttshop.pojo.po.Rpdept" >
+    insert into rpdept (Id, deptname, deptcode, 
+      ParentId, OrderNum, deptlevel, 
+      Deleted, deptremark)
+    values (#{id,jdbcType=DECIMAL}, #{deptname,jdbcType=VARCHAR}, #{deptcode,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=DECIMAL}, #{ordernum,jdbcType=DECIMAL}, #{deptlevel,jdbcType=DECIMAL}, 
+      #{deleted,jdbcType=CHAR}, #{deptremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lkf.ttshop.pojo.po.Rpdept" >
+    insert into rpdept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="deptname != null" >
+        deptname,
+      </if>
+      <if test="deptcode != null" >
+        deptcode,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="ordernum != null" >
+        OrderNum,
+      </if>
+      <if test="deptlevel != null" >
+        deptlevel,
+      </if>
+      <if test="deleted != null" >
+        Deleted,
+      </if>
+      <if test="deptremark != null" >
+        deptremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null" >
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=DECIMAL},
+      </if>
+      <if test="deptlevel != null" >
+        #{deptlevel,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="deptremark != null" >
+        #{deptremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lkf.ttshop.pojo.po.RpdeptExample" resultType="java.lang.Integer" >
+    select count(*) from rpdept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rpdept
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deptname != null" >
+        deptname = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null" >
+        deptcode = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        ParentId = #{record.parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ordernum != null" >
+        OrderNum = #{record.ordernum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deptlevel != null" >
+        deptlevel = #{record.deptlevel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deleted != null" >
+        Deleted = #{record.deleted,jdbcType=CHAR},
+      </if>
+      <if test="record.deptremark != null" >
+        deptremark = #{record.deptremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rpdept
+    set Id = #{record.id,jdbcType=DECIMAL},
+      deptname = #{record.deptname,jdbcType=VARCHAR},
+      deptcode = #{record.deptcode,jdbcType=VARCHAR},
+      ParentId = #{record.parentid,jdbcType=DECIMAL},
+      OrderNum = #{record.ordernum,jdbcType=DECIMAL},
+      deptlevel = #{record.deptlevel,jdbcType=DECIMAL},
+      Deleted = #{record.deleted,jdbcType=CHAR},
+      deptremark = #{record.deptremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lkf.ttshop.pojo.po.Rpdept" >
+    update rpdept
+    <set >
+      <if test="deptname != null" >
+        deptname = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null" >
+        deptcode = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="ordernum != null" >
+        OrderNum = #{ordernum,jdbcType=DECIMAL},
+      </if>
+      <if test="deptlevel != null" >
+        deptlevel = #{deptlevel,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        Deleted = #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="deptremark != null" >
+        deptremark = #{deptremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lkf.ttshop.pojo.po.Rpdept" >
+    update rpdept
+    set deptname = #{deptname,jdbcType=VARCHAR},
+      deptcode = #{deptcode,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=DECIMAL},
+      OrderNum = #{ordernum,jdbcType=DECIMAL},
+      deptlevel = #{deptlevel,jdbcType=DECIMAL},
+      Deleted = #{deleted,jdbcType=CHAR},
+      deptremark = #{deptremark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
