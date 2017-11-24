@@ -19,7 +19,7 @@ public interface RpdeptMapper {
 
     List<Rpdept> selectByExample(RpdeptExample example);
 
-    Rpdept selectByPrimaryKey(BigDecimal id);
+    Rpdept selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Rpdept record, @Param("example") RpdeptExample example);
 
