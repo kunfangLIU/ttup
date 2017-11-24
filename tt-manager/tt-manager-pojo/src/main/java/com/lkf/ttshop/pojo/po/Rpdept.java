@@ -72,7 +72,7 @@ public class Rpdept {
     }
 
     public void setDeleted(String deleted) {
-        this.deleted = deleted == null ? null : deleted.trim();
+        this.deleted = deleted ;
     }
 
     public String getDeptremark() {

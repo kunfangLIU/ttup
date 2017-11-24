@@ -6,6 +6,8 @@ import com.lkf.ttshop.pojo.po.Rpdept;
 import com.lkf.ttshop.pojo.vo.RpDeptCustom;
 import com.lkf.ttshop.pojo.vo.RpDeptQuery;
 
+import java.util.List;
+
 /**
  * User: CTKJ-0106
  * Date: 2017/11/24
@@ -28,4 +30,11 @@ public interface RpDeptService {
      */
     Result<RpDeptCustom> listDepts(Page page, RpDeptQuery query);
 
+    /**
+     * 批量删除部门
+     * @param b
+     * @param ids
+     * @return
+     */
+    int removeDeptIds(String b , List<Long> ids);
 }

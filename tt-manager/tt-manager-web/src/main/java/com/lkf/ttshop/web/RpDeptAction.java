@@ -9,10 +9,9 @@ import com.lkf.ttshop.service.RpDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * User: CTKJ-0106
@@ -34,5 +33,10 @@ public class RpDeptAction {
     @RequestMapping("/rpDept")
     public Result<RpDeptCustom> listDepts(Page page , RpDeptQuery query){
         return  rpDeptService.listDepts(page,query);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/depts/batch" ,method = RequestMethod.POST)
+    public int removeDeptIds(@RequestParam("ids[]")List<Long> ids){
+        return rpDeptService.removeDeptIds((String)"1", ids);
     }
 }

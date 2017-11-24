@@ -5,6 +5,7 @@ import com.lkf.ttshop.dao.RpdeptMapper;
 import com.lkf.ttshop.dto.Page;
 import com.lkf.ttshop.dto.Result;
 import com.lkf.ttshop.pojo.po.Rpdept;
+import com.lkf.ttshop.pojo.po.RpdeptExample;
 import com.lkf.ttshop.pojo.vo.RpDeptCustom;
 import com.lkf.ttshop.pojo.vo.RpDeptQuery;
 import com.lkf.ttshop.service.RpDeptService;
@@ -43,5 +44,17 @@ public class RpDeptServiceImpl implements RpDeptService {
         rs.setTotal(total);
         rs.setRows(rows);
         return rs;
+    }
+
+    @Override
+    public int removeDeptIds(String b, List<Long> ids) {
+        Rpdept rpdept = new Rpdept();
+        rpdept.setDeleted(b);
+        //创建模板
+        RpdeptExample example = new RpdeptExample();
+        RpdeptExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        //执行查询
+        return  rpdeptDao.updateByExampleSelective(rpdept,example);
     }
 }

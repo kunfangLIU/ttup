@@ -86,7 +86,7 @@
                 //ajax提交数组给后台
                 $.post(
                     //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
-                    'users/batch',
+                    'depts/batch',
                     //data:提交哪些数据给后台进行处理
                     {'ids[]':ids},
                     //function:处理后成功回调的函数

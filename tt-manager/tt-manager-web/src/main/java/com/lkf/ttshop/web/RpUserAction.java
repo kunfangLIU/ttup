@@ -49,7 +49,6 @@ public class RpUserAction {
     /**
      * 保存新商品
      * @param rpuser 为了对应除商品描述以外其他字段
-     * @param content 为了对应商品描述
      * @return 受到影响的行数
      */
     @ResponseBody
