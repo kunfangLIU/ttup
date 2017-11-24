@@ -46,5 +46,16 @@ public class RpUserAction {
     public int removeUserByIds(@RequestParam("ids[]") List<Long> ids){
         return rpUserService.removeUserByIds((String)"1",ids);
     }
+    /**
+     * 保存新商品
+     * @param rpuser 为了对应除商品描述以外其他字段
+     * @param content 为了对应商品描述
+     * @return 受到影响的行数
+     */
+    @ResponseBody
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    public int saveUser(Rpuser rpuser ){
+        return rpUserService.saveUser(rpuser);
+    }
 }
 

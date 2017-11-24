@@ -4,7 +4,7 @@
 
   <sql id="Base_Column_List" >
     i.Id, i.useraccount, i.password, i.username, i.Sex, i.Mobile, i.Email, i.userstatus, i.DeptId, i.Deleted,
-    i.userremark
+    i.userremark,c.deptname
   </sql>
   <sql id="Where_Clause">
     <where>
@@ -27,14 +27,16 @@
     select
     <include refid="Base_Column_List" />
     from rpuser i
+    LEFT  JOIN rpdept c
+    ON  i.DeptId = c.id
     <include refid="Where_Clause"/>
-    order by i.id desc
+    order by i.id asc
     limit #{page.offset},#{page.rows}
   </select>
   <select id="couontUsers" resultType="long">
     select
     count(*)
     from rpuser i
-    order by i.id desc
+    order by i.id asc
   </select>
 </mapper>

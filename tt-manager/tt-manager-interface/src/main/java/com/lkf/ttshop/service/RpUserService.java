@@ -36,5 +36,10 @@ public interface RpUserService {
      * @return
      */
     int removeUserByIds(String b,List<Long> ids);
-
+    /**
+     * 保存商品和商品描述
+     * @param rpuser
+     * @return
+     */
+    int saveUser(Rpuser rpuser );
 }

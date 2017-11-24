@@ -9,11 +9,11 @@ public class Rpdept {
 
     private String deptcode;
 
-    private BigDecimal parentid;
+    private Long parentid;
 
     private Short ordernum;
 
-    private Short deptlevel;
+    private Boolean deptlevel;
 
     private String deleted;
 
@@ -43,11 +43,11 @@ public class Rpdept {
         this.deptcode = deptcode == null ? null : deptcode.trim();
     }
 
-    public BigDecimal getParentid() {
+    public Long getParentid() {
         return parentid;
     }
 
-    public void setParentid(BigDecimal parentid) {
+    public void setParentid(Long parentid) {
         this.parentid = parentid;
     }
 
@@ -59,11 +59,11 @@ public class Rpdept {
         this.ordernum = ordernum;
     }
 
-    public Short getDeptlevel() {
+    public Boolean getDeptlevel() {
         return deptlevel;
     }
 
-    public void setDeptlevel(Short deptlevel) {
+    public void setDeptlevel(Boolean deptlevel) {
         this.deptlevel = deptlevel;
     }
 

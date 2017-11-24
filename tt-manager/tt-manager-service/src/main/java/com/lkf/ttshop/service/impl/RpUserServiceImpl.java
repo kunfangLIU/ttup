@@ -1,6 +1,5 @@
 package com.lkf.ttshop.service.impl;
 
-import com.dhc.ttshop.pojo.po.TbItem;
 import com.dhc.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.dao.RpuserCustomMapper;
 import com.lkf.ttshop.dao.RpuserMapper;
@@ -11,9 +10,12 @@ import com.lkf.ttshop.pojo.po.Rpuser;
 import com.lkf.ttshop.pojo.vo.RpUserCustom;
 import com.lkf.ttshop.pojo.vo.RpUserQuery;
 import com.lkf.ttshop.service.RpUserService;
+import com.lkf.ttshop.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,5 +62,24 @@ public class RpUserServiceImpl implements RpUserService{
         criteria.andIdIn(ids);
         //真正的执行查询
         return rpuserDao.updateByExampleSelective(user, example);
+    }
+    //@Transactional注解后表示这是一个事务方法，事务方法不是越多越好，平常使用查询方法不需要添加此注解
+    @Transactional
+    @Override
+    public int saveUser(Rpuser rpuser) {
+        //通过工具类获取到商品ID
+        BigDecimal userId = BigDecimal.valueOf(IDUtils.getItemId());
+        //tbItem传进来时已经携带了6个属性
+        rpuser.setId(userId);
+        //存商品
+        int count = rpuserDao.insert(rpuser);
+     /*   //存商品描述表（商品的ID保持一致）
+        TbItemDesc tbItemDesc = new TbItemDesc();
+        tbItemDesc.setItemId(itemId);
+        tbItemDesc.setItemDesc(desc);
+        tbItemDesc.setCreated(new Date());
+        tbItemDesc.setUpdated(new Date());
+        count += itemDescDao.insert(tbItemDesc);*/
+        return count;
     }
 }

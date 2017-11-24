@@ -10,13 +10,13 @@ import com.lkf.ttshop.pojo.po.Rpuser;
  * 用户对应页面的实体类
  */
 public class RpUserCustom extends Rpuser{
-    private String catName;
+    private String deptname;
 
-    public String getCatName() {
-        return catName;
+    public String getDeptname() {
+        return deptname;
     }
 
-    public void setCatName(String catName) {
-        this.catName = catName;
+    public void setDeptname(String deptname) {
+        this.deptname = deptname;
     }
 }

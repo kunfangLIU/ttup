@@ -315,7 +315,7 @@ public class RpdeptExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentidEqualTo(BigDecimal value) {
+        public Criteria andParentidEqualTo(Long value) {
             addCriterion("ParentId =", value, "parentid");
             return (Criteria) this;
         }
