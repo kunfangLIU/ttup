@@ -41,8 +41,13 @@ public class RpPermissionAction {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "permissions/batch",method = RequestMethod.POST)
+    @RequestMapping(value = "/permissions/batch",method = RequestMethod.POST)
     public int removePermissionIds(@RequestParam ("ids[]")List<Long> ids){
         return  rpPermissionService.removePermissionIds((String)"1",ids);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/permissions",method = RequestMethod.POST)
+    public int saveDept(Rppermission rppermission){
+        return  rpPermissionService.savePermission(rppermission);
     }
 }

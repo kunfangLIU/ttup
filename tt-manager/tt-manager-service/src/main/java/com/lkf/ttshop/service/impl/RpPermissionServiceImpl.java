@@ -9,9 +9,11 @@ import com.lkf.ttshop.pojo.po.RppermissionExample;
 import com.lkf.ttshop.pojo.vo.RpPermissionCustom;
 import com.lkf.ttshop.pojo.vo.RpPermissionQuery;
 import com.lkf.ttshop.service.RpPermissionService;
+import com.lkf.ttshop.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,5 +76,20 @@ public class RpPermissionServiceImpl implements RpPermissionService {
         criteria.andIdIn(ids);
 
         return rppermissionDao.updateByExampleSelective(rppermission,example);
+    }
+
+    /**
+     * 保存权限信息列表业务逻辑实现类
+     * @param rppermission
+     * @return
+     */
+    @Override
+    public int savePermission(Rppermission rppermission) {
+        //通过工具类随机获取权限id
+        BigDecimal rpPermissionId = BigDecimal.valueOf(IDUtils.getItemId());
+        rppermission.setId(rpPermissionId);
+        //影响记录的条数
+        int count = rppermissionDao.insert(rppermission);
+        return count;
     }
 }

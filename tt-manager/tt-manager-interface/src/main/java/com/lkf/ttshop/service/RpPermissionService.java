@@ -37,4 +37,11 @@ public interface RpPermissionService {
      * @return
      */
     int removePermissionIds(String b, List<Long> ids);
+
+    /**
+     * 添加权限信息列表
+     * @param rppermission
+     * @return
+     */
+    int savePermission(Rppermission rppermission);
 }
