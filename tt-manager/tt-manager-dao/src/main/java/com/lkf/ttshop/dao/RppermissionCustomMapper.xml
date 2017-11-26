@@ -7,7 +7,7 @@
   </sql>
   <sql id="Where_Clause">
     <where>
-
+      i.Deleted != '1'
       <if test="query != null and query.permissionname != null and query.permissionname != '' ">
         and i.permissionname like '%${query.permissionname}%'
       </if>

@@ -9,10 +9,9 @@ import com.lkf.ttshop.service.RpPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * User: CTKJ-0106
@@ -34,5 +33,16 @@ public class RpPermissionAction {
     @RequestMapping("/rpPermission")
     public Result<RpPermissionCustom> listByPermissionPage(RpPermissionQuery query, Page page){
         return  rpPermissionService.listByPermissionPage(query,page);
+    }
+
+    /**
+     * 批量删除权限控制层
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "permissions/batch",method = RequestMethod.POST)
+    public int removePermissionIds(@RequestParam ("ids[]")List<Long> ids){
+        return  rpPermissionService.removePermissionIds((String)"1",ids);
     }
 }

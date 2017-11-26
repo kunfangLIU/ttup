@@ -145,7 +145,7 @@ public class RppermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<BigDecimal> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("Id in", values, "id");
             return (Criteria) this;
         }

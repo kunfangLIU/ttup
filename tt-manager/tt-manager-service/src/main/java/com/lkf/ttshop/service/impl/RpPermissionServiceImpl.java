@@ -5,6 +5,7 @@ import com.lkf.ttshop.dao.RppermissionMapper;
 import com.lkf.ttshop.dto.Page;
 import com.lkf.ttshop.dto.Result;
 import com.lkf.ttshop.pojo.po.Rppermission;
+import com.lkf.ttshop.pojo.po.RppermissionExample;
 import com.lkf.ttshop.pojo.vo.RpPermissionCustom;
 import com.lkf.ttshop.pojo.vo.RpPermissionQuery;
 import com.lkf.ttshop.service.RpPermissionService;
@@ -56,5 +57,22 @@ public class RpPermissionServiceImpl implements RpPermissionService {
         rs.setRows(rows);
         rs.setTotal(total);
         return rs;
+    }
+
+    /**
+     * 批量删除权限
+     * @param b
+     * @param ids
+     * @return
+     */
+    @Override
+    public int removePermissionIds(String b, List<Long> ids) {
+        Rppermission rppermission = new Rppermission();
+        rppermission.setDeleted(b);
+        RppermissionExample example = new RppermissionExample();
+        RppermissionExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+
+        return rppermissionDao.updateByExampleSelective(rppermission,example);
     }
 }

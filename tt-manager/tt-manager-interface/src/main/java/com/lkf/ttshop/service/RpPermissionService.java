@@ -6,6 +6,8 @@ import com.lkf.ttshop.pojo.po.Rppermission;
 import com.lkf.ttshop.pojo.vo.RpPermissionCustom;
 import com.lkf.ttshop.pojo.vo.RpPermissionQuery;
 
+import java.util.List;
+
 /**
  * User: CTKJ-0106
  * Date: 2017/11/26
@@ -27,4 +29,12 @@ public interface RpPermissionService {
      * @return
      */
     Result<RpPermissionCustom> listByPermissionPage(RpPermissionQuery query, Page page);
+
+    /**
+     * 批量删除权限信息
+     * @param b
+     * @param ids
+     * @return
+     */
+    int removePermissionIds(String b, List<Long> ids);
 }
