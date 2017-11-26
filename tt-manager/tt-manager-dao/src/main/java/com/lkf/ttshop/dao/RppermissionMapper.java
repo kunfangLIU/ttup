@@ -19,7 +19,7 @@ public interface RppermissionMapper {
 
     List<Rppermission> selectByExample(RppermissionExample example);
 
-    Rppermission selectByPrimaryKey(BigDecimal id);
+    Rppermission selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Rppermission record, @Param("example") RppermissionExample example);
 

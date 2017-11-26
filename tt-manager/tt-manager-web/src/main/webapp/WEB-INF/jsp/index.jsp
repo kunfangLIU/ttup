@@ -37,7 +37,7 @@
         </div>
         <div title="权限管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'index-item'}">权限管理</li><em style="color: red"></em>
+                <li data-options="attributes:{'href':'persmission-list'}">权限管理</li><em style="color: red"></em>
             </ul>
         </div>
 
