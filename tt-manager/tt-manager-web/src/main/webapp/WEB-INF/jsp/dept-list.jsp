@@ -29,10 +29,10 @@
         });
     }
     function  add() {
-        ttshop.addTabs('新增用户','user-add');
+        ttshop.addTabs('新增部门信息','dept-add');
     }
     function  edit() {
-        ttshop.addTabs('编辑用户','user-edit');
+        ttshop.addTabs('编辑部门信息','dept-edit');
         //获取选中的行
         var selectRows = $('#dg').datagrid('getSelections');
         //没有选中任何行

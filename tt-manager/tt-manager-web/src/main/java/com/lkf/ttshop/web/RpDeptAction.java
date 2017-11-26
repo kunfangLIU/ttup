@@ -34,9 +34,26 @@ public class RpDeptAction {
     public Result<RpDeptCustom> listDepts(Page page , RpDeptQuery query){
         return  rpDeptService.listDepts(page,query);
     }
+
+    /**
+     * 删除部门集合控制层
+     * @param ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/depts/batch" ,method = RequestMethod.POST)
     public int removeDeptIds(@RequestParam("ids[]")List<Long> ids){
         return rpDeptService.removeDeptIds((String)"1", ids);
+    }
+
+    /**
+     * 添加部门信息控制层
+     * @param rpdept
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/dept",method = RequestMethod.POST)
+    public int saveDept(Rpdept rpdept){
+        return  rpDeptService.saveDept(rpdept);
     }
 }

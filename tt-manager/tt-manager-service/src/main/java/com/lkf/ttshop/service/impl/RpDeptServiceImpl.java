@@ -9,9 +9,11 @@ import com.lkf.ttshop.pojo.po.RpdeptExample;
 import com.lkf.ttshop.pojo.vo.RpDeptCustom;
 import com.lkf.ttshop.pojo.vo.RpDeptQuery;
 import com.lkf.ttshop.service.RpDeptService;
+import com.lkf.ttshop.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +48,12 @@ public class RpDeptServiceImpl implements RpDeptService {
         return rs;
     }
 
+    /**
+     * 通过改变是否删除状态来达到删除部门集合的效果，实际只是改变了状态deleted为1时隐藏，为0时显示
+     * @param b
+     * @param ids
+     * @return
+     */
     @Override
     public int removeDeptIds(String b, List<Long> ids) {
         Rpdept rpdept = new Rpdept();
@@ -56,5 +64,20 @@ public class RpDeptServiceImpl implements RpDeptService {
         criteria.andIdIn(ids);
         //执行查询
         return  rpdeptDao.updateByExampleSelective(rpdept,example);
+    }
+
+    /**
+     * 添加部门集合
+     * @param rpdept
+     * @return
+     */
+    @Override
+    public int saveDept(Rpdept rpdept) {
+        //通过工具类获取部门id
+        BigDecimal deptId = BigDecimal.valueOf(IDUtils.getItemId());
+        rpdept.setId(deptId);
+        //影响记录的条数
+        int count = rpdeptDao.insert(rpdept);
+        return count;
     }
 }

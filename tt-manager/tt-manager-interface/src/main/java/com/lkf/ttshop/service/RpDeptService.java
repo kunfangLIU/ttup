@@ -37,4 +37,11 @@ public interface RpDeptService {
      * @return
      */
     int removeDeptIds(String b , List<Long> ids);
+
+    /**
+     * 添加部门资料
+     * @param rpdept
+     * @return
+     */
+    int saveDept(Rpdept rpdept);
 }
