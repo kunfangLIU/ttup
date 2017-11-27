@@ -54,7 +54,7 @@
             <tr>
                  <td class="label" >权限类型：</td>
                 <td>
-                    <select id="permissionView" class="easyui-combobox"  data-options="required:true" name="permissionView" style="width:200px;">
+                    <select id="permissionTypeView" class="easyui-combobox"  data-options="required:true" name="permissionTypeView" style="width:200px;">
                         <option value=" ">全部</option>
                         <option value="0">菜单</option>
                         <option value = "1">按钮</option>
@@ -110,7 +110,7 @@
             },
             onSubmit: function () {
                 //给商品价格隐藏域设值
-                $('#type').val($('#permissionView').val()*100);
+                $('#type').val($('#permissionTypeView').val()*100);
                 //this:DOM对象
                 //$(this)：jquery对象
                 return $(this).form('validate');

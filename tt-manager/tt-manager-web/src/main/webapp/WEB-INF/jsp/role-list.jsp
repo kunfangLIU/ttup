@@ -1,20 +1,16 @@
 <%--
   User: CTKJ-0106
-  Date: 2017/11/23
-  Time: 10:27
+  Date: 2017/11/27
+  Time: 11:37
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
-<table id="rg"></table>
+<table id="ug"></table>
 <div id="toolbar">
     <div style="padding: 5px; background-color: #fffcf9;">
-        <label>用户名：</label>
-        <input class="easyui-textbox" type="text" id="username">
-        <label>手机号：</label>
-        <input class="easyui-textbox" type="text" id="mobile">
-        <label>帐户：</label>
-        <input class="easyui-textbox" type="text" id="useraccount">
-        <label>状态：</label>
-        <select id="userstatus" class="easyui-combobox">
+        <label>角色名称：</label>
+        <input class="easyui-textbox" type="text" id="rolename">
+        <label>角色状态：</label>
+        <select id="rolestatus" class="easyui-combobox">
             <option value="">全部</option>
             <option value="0">禁用</option>
             <option value="1">启用</option>
@@ -30,19 +26,17 @@
     </div>
 </div>
 
-<table id="rg"></table>
+<table id="ug"></table>
 
 <script>
     function searchForm(){
-        $('#rg').datagrid('load',{
-            username:$('#username').val(),
-            mobile:$('#mobile').val(),
-            useraccount:$('#useraccount').val(),
-            userstatus:$('#userstatus').combobox('getValue')
+        $('#ug').datagrid('load',{
+            rolename:$('#rolename').val(),
+            rolestatus:$('#rolestatus').combobox('getValue')
         });
     }
     function  add() {
-        ttshop.addTabs('新增商品','user-add');
+        ttshop.addTabs('新增角色','role-add');
     }
     function  edit() {
         //获取选中的行
@@ -64,12 +58,12 @@
                 //ajax提交数组给后台
                 $.post(
                     //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
-                    'user/edit',
+                    'role/edit',
                     //data:提交哪些数据给后台进行处理
                     {'ids[]':ids},
                     //function:处理后成功回调的函数
                     function(data){
-                        $('#rg').datagrid('reload');
+                        $('#ug').datagrid('reload');
                     },
                     //datatype:返回的数据类型
                     'json'
@@ -80,7 +74,7 @@
     }
     function  remove() {
         //获取选中的行
-        var selectRows = $('#rg').datagrid('getSelections');
+        var selectRows = $('#ug').datagrid('getSelections');
         //没有选中任何行
         if(selectRows.length == 0){
             $.messager.alert('提示','未选中记录','warning');
@@ -98,7 +92,7 @@
                 //ajax提交数组给后台
                 $.post(
                     //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
-                    'users/batch',
+                    'roles/batch',
                     //data:提交哪些数据给后台进行处理
                     {'ids[]':ids},
                     //function:处理后成功回调的函数
@@ -113,22 +107,18 @@
         });
     }
     /*初始化数据表格*/
-    $('#rg').datagrid({
+    $('#ug').datagrid({
         pageSize:10,
         toolbar:'#toolbar',
         fit:true,
         pagination:true,
-        url:'rpUsers',
+        url:'rpRoles',
         columns:[[
             {field:'ck',checkbox:true},
             {field:'id',title:'序号',width:100},
-            {field:'useraccount',title:'帐户',width:100},
-            {field:'username',title:'用户名',width:100},
-            {field:'sex',title:'性别',width:100},
-            {field:'mobile',title:'电话',width:100},
-            {field:'email',title:'邮箱',width:100},
-            {field:'userremark',title:'备注',width:100},
-            {field:'userstatus',title:'用户状态',formatter:function(value,row,index){
+            {field:'rolename',title:'角色名称',id : "rolename",width:100},
+            {field:'roleremark',title:'备注',width:100},
+            {field:'rolestatus',title:'角色状态',formatter:function(value,row,index){
                 switch (value){
                     case "0":
                         return '禁用';
@@ -145,4 +135,3 @@
     });
 
 </script>
-

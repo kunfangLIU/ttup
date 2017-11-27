@@ -32,7 +32,7 @@
         </div>
         <div title="角色管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'content'}">角色管理</li>
+                <li data-options="attributes:{'href':'role-list'}">角色管理</li>
             </ul>
         </div>
         <div title="权限管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">

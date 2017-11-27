@@ -19,7 +19,7 @@ public interface RproleMapper {
 
     List<Rprole> selectByExample(RproleExample example);
 
-    Rprole selectByPrimaryKey(BigDecimal id);
+    Rprole selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Rprole record, @Param("example") RproleExample example);
 
