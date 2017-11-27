@@ -9,10 +9,9 @@ import com.lkf.ttshop.service.RpRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * User: CTKJ-0106
@@ -48,5 +47,10 @@ public class RpRoleAction {
     @RequestMapping("/rpRoles")
     public Result<RpRoleCustom> listRoles(Page page, RpRoleQuery query){
        return rpRoleService.listRoles(page,query);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/roles/batch",method = RequestMethod.POST)
+    public  int removeRoles(@RequestParam("ids[]")List<Long> ids){
+        return  rpRoleService.removeRoles((String)"1",ids);
     }
 }

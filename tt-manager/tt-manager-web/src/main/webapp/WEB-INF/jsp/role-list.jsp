@@ -97,7 +97,7 @@
                     {'ids[]':ids},
                     //function:处理后成功回调的函数
                     function(data){
-                        $('#rg').datagrid('reload');
+                        $('#ug').datagrid('reload');
                     },
                     //datatype:返回的数据类型
                     'json'

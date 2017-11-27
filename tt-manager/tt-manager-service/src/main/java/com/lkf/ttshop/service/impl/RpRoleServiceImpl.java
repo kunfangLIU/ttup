@@ -5,6 +5,7 @@ import com.lkf.ttshop.dao.RproleMapper;
 import com.lkf.ttshop.dto.Page;
 import com.lkf.ttshop.dto.Result;
 import com.lkf.ttshop.pojo.po.Rprole;
+import com.lkf.ttshop.pojo.po.RproleExample;
 import com.lkf.ttshop.pojo.vo.RpRoleCustom;
 import com.lkf.ttshop.pojo.vo.RpRoleQuery;
 import com.lkf.ttshop.service.RpRoleService;
@@ -56,5 +57,15 @@ public class RpRoleServiceImpl implements RpRoleService {
         rs.setRows(rows);
         rs.setTotal(total);
         return rs;
+    }
+
+    @Override
+    public int removeRoles(String b, List<Long> ids) {
+        Rprole rprole = new Rprole();
+        rprole.setDeleted(b);
+        RproleExample example = new RproleExample();
+        RproleExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        return rproleDao.updateByExampleSelective(rprole,example);
     }
 }

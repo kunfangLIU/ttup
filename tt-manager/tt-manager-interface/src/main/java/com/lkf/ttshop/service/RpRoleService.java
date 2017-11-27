@@ -6,6 +6,8 @@ import com.lkf.ttshop.pojo.po.Rprole;
 import com.lkf.ttshop.pojo.vo.RpRoleCustom;
 import com.lkf.ttshop.pojo.vo.RpRoleQuery;
 
+import java.util.List;
+
 /**
  * User: CTKJ-0106
  * Date: 2017/11/27
@@ -28,4 +30,13 @@ public interface RpRoleService {
      * @return角色信息结果
      */
     Result<RpRoleCustom> listRoles(Page page, RpRoleQuery query);
+
+    /**
+     * 改变是否删除值来实现批量删除操作
+     * @param b
+     * @param ids
+     * @return
+     */
+    int removeRoles(String b, List<Long> ids);
+
 }

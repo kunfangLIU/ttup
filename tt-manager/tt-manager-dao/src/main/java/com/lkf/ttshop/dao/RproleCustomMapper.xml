@@ -7,6 +7,7 @@
   </sql>
   <sql id="Where_Clause">
     <where>
+      i.Deleted != '1'
       <if test="query != null and query.rolename != null and query.rolename != '' ">
         and i.rolename like '%${query.rolename}%'
       </if>
