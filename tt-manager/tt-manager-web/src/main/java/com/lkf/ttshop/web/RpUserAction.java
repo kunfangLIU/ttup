@@ -10,8 +10,11 @@ import com.lkf.ttshop.service.RpUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -55,6 +58,27 @@ public class RpUserAction {
     @RequestMapping(value = "/user",method = RequestMethod.POST)
     public int saveUser(Rpuser rpuser ){
         return rpUserService.saveUser(rpuser);
+    }
+    @ResponseBody
+    @RequestMapping("/user/edit")
+    public ModelAndView modifyRpUser(@PathVariable  Rpuser rpuser, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+
+        Rpuser findUserId = rpUserService.modifyRpUser(rpuser);
+       /* model.addAttribute("rpuser",findUserId);*/
+        modelAndView.addObject("rpuser",findUserId);
+        modelAndView.setViewName("user-edit");
+       return modelAndView;
+    }
+    @ResponseBody
+    @RequestMapping("/login")
+    public String doLogin(Rpuser rpUserInfo, HttpSession session,String username,String password){
+        return  rpUserService.checkUser(rpUserInfo,session);
+    }
+    @ResponseBody
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
     }
 }
 

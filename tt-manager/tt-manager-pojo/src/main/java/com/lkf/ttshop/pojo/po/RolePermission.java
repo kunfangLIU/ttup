@@ -1,6 +1,7 @@
 package com.lkf.ttshop.pojo.po;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RolePermission {
     private BigDecimal id;
@@ -8,6 +9,15 @@ public class RolePermission {
     private BigDecimal roleid;
 
     private BigDecimal perid;
+    private List<Rprole> rproles;
+
+    public List<Rprole> getRproles() {
+        return rproles;
+    }
+
+    public void setRproles(List<Rprole> rproles) {
+        this.rproles = rproles;
+    }
 
     public BigDecimal getId() {
         return id;

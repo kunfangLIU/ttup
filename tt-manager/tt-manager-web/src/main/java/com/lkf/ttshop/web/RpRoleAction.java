@@ -44,7 +44,7 @@ public class RpRoleAction {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/rpRoles")
+    @RequestMapping("/rpRole")
     public Result<RpRoleCustom> listRoles(Page page, RpRoleQuery query){
        return rpRoleService.listRoles(page,query);
     }
@@ -52,5 +52,11 @@ public class RpRoleAction {
     @RequestMapping(value = "/roles/batch",method = RequestMethod.POST)
     public  int removeRoles(@RequestParam("ids[]")List<Long> ids){
         return  rpRoleService.removeRoles((String)"1",ids);
+    }
+    @ResponseBody
+    @RequestMapping("/rpRoles")
+    public int saveRole(Rprole rprole){
+        int i = rpRoleService.saveRole(rprole);
+        return i;
     }
 }

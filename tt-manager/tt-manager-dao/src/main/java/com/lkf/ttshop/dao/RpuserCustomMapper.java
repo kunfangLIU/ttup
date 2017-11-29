@@ -1,5 +1,6 @@
 package com.lkf.ttshop.dao;
 
+import com.lkf.ttshop.pojo.po.Rpuser;
 import com.lkf.ttshop.pojo.vo.RpUserCustom;
 
 import java.util.List;
@@ -19,5 +20,18 @@ public interface RpuserCustomMapper {
      * @return
      */
    List<RpUserCustom> listUserByPage(Map<String ,Object> map);
+
+    /**
+     * 修改用户信息dao层接口
+     * @param rpuser
+     */
+    void updateUser(Rpuser rpuser);
+
+    /**
+     * 按名字查询获得登录信息
+     * @param rpuser
+     * @return
+     */
+    Rpuser  selectByUserName(Rpuser rpuser);
 
 }

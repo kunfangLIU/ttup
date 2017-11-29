@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>首页</title>
+    <title>权限管理系统</title>
     <!-- 导入easyui的样式表 -->
     <link rel="stylesheet" href="js/jquery-easyui-1.5/themes/bootstrap/easyui.css">
     <link rel="stylesheet" href="js/jquery-easyui-1.5/themes/icon.css">
@@ -19,13 +19,16 @@
 </div>
 <div data-options="region:'west'" style="width:200px;">
     <div id="menu" class="easyui-accordion">
-        <div title="用户管理" data-options="selected:true,iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="信息管理" data-options="selected:true,iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
                 <li data-options="attributes:{'href':'user-add'}">新增用户</li>
                 <li data-options="attributes:{'href':'user-list'}">查询用户</li>
+                <li data-options="attributes:{'href':'dept-list'}">部门管理</li>
+                <li data-options="attributes:{'href':'role-list'}">角色管理</li>
+                <li data-options="attributes:{'href':'persmission-list'}">权限管理</li><em style="color: red"></em>
             </ul>
         </div>
-        <div title="部门管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+     <%--   <div title="部门管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
                 <li data-options="attributes:{'href':'dept-list'}">部门信息列表</li>
             </ul>
@@ -39,13 +42,13 @@
             <ul class="easyui-tree">
                 <li data-options="attributes:{'href':'persmission-list'}">权限管理</li><em style="color: red"></em>
             </ul>
-        </div>
+        </div>--%>
 
     </div>
 </div>
 <div data-options="region:'center'" style="background:#eee;">
     <div id="tab" class="easyui-tabs" data-options="fit:true">
-        <div title="欢迎页面" style="padding:20px;">欢迎来到权限后台管理系统</div>
+        <div title="欢迎页面" style="padding:20px;"><h1>欢迎来到权限后台管理系统</h1></div>
     </div>
 </div>
 <!-- jquery -->

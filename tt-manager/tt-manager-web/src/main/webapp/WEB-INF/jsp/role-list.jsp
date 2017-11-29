@@ -112,7 +112,7 @@
         toolbar:'#toolbar',
         fit:true,
         pagination:true,
-        url:'rpRoles',
+        url:'rpRole',
         columns:[[
             {field:'ck',checkbox:true},
             {field:'id',title:'序号',width:100},

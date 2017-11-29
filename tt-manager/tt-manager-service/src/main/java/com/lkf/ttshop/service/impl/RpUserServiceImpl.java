@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -81,5 +82,58 @@ public class RpUserServiceImpl implements RpUserService{
         tbItemDesc.setUpdated(new Date());
         count += itemDescDao.insert(tbItemDesc);*/
         return count;
+    }
+
+    /**
+     * 修改用户信息集合业务逻辑层接口实现类
+     * @param rpuser
+     */
+    @Override
+    public Rpuser modifyRpUser(Rpuser rpuser) {
+        rpuserCustomDao.updateUser(rpuser);
+        return rpuser;
+    }
+    @Override
+    public Rpuser findByUsername(Rpuser user)  {
+        return rpuserCustomDao.selectByUserName(user);
+    }
+    //验证用户是否存在
+    @Override
+    public String checkUser(Rpuser user,HttpSession session)  {
+        String mess="";
+        System.out.println(user.getPassword()+user.getUserstatus()+user.getPassword()+user.getDeleted());
+        if(user.getUsername()==null||user.getPassword()==null ||"".equals(user.getUsername())||"".equals(user.getPassword())){
+            mess="3";
+        }else {
+            Rpuser findUser = this.findByUsername(user);
+            if(findUser!=null) {
+                if(findUser.getPassword().equals(user.getPassword())) {
+                    session.setAttribute("sessionUser", findUser);
+                    mess="1";
+                }else {
+                    mess="2";
+                }
+            }else {
+                mess="2";
+            }
+        }
+        return mess;
+    }
+    //验证用户名
+    @Override
+    public String checkUsername(Rpuser user){
+
+        String mess = "";
+
+        Rpuser findUser = this.findByUsername(user);
+
+        if (findUser!=null) {
+
+            mess = "2";
+        }else {
+            mess = "1";
+        }
+        return mess;
+
     }
 }

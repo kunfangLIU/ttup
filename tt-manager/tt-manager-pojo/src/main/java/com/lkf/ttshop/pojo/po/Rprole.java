@@ -1,6 +1,7 @@
 package com.lkf.ttshop.pojo.po;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Rprole {
     private BigDecimal id;
@@ -12,12 +13,30 @@ public class Rprole {
     private String deleted;
 
     private String roleremark;
+    private List<Rpuser> rpusers;
+    private List<Rppermission> rppermissions;
+
+    public List<Rppermission> getRppermissions() {
+        return rppermissions;
+    }
+
+    public void setRppermissions(List<Rppermission> rppermissions) {
+        this.rppermissions = rppermissions;
+    }
+
+    public List<Rpuser> getRpusers() {
+        return rpusers;
+    }
+
+    public void setRpusers(List<Rpuser> rpusers) {
+        this.rpusers = rpusers;
+    }
 
     public BigDecimal getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(BigDecimal rpRoleId) {
         this.id = id;
     }
 

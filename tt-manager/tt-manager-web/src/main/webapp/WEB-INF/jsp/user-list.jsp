@@ -42,10 +42,18 @@
         });
     }
     function  add() {
-        ttshop.addTabs('新增商品','user-add');
+        ttshop.addTabs('新增用户','user-add');
     }
     function  edit() {
-        //获取选中的行
+       /* ttshop.addTabs('编辑用户','user-edit');*/
+      /*  var i =  $(".datagrid-cell datagrid-cell-c1-id").val();
+
+           var i =  $(".datagrid-cell datagrid-cell-c1-id").val();*/
+
+            /*alter(i);*/
+
+
+      /*  //获取选中的行
         var selectRows = $('#rg').datagrid('getSelections');
         //没有选中任何行
         if(selectRows.length == 0){
@@ -53,7 +61,7 @@
             return;
         }
         //选中至少一行记录
-        $.messager.confirm('确认','？',function(r){
+        $.messager.confirm('确认','确认编辑吗？',function(r){
             if (r){
                 //点击了消息窗口上的确认按钮
                 //将选中记录的编号写进一个数组中
@@ -76,7 +84,7 @@
                 );
 
             }
-        });
+        });*/
     }
     function  remove() {
         //获取选中的行

@@ -7,6 +7,7 @@ import com.lkf.ttshop.pojo.po.Rpuser;
 import com.lkf.ttshop.pojo.vo.RpUserCustom;
 import com.lkf.ttshop.pojo.vo.RpUserQuery;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -42,4 +43,14 @@ public interface RpUserService {
      * @return
      */
     int saveUser(Rpuser rpuser );
+
+    /**
+     * 修改用户集合业务逻辑层接口
+     * @param rpuser
+     */
+    Rpuser modifyRpUser(Rpuser rpuser);
+
+    Rpuser findByUsername(Rpuser user);
+    String checkUser(Rpuser user,HttpSession session);
+    String checkUsername(Rpuser user);
 }

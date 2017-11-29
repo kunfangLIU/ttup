@@ -5,14 +5,19 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<div class="easyui-panel" title="用户详情" data-options="fit:true">
+
+
+<div class="easyui-panel" title="用户详情" data-options="fit:true"  buttons="#dlg-buttons">
     <form class="userForm" id="userAddForm" name="userAddForm" method="post">
+
+
+
         <table style="width:100%;">
             <tr>
                 <td class="label">帐户名：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="useraccount" name="useraccount"
-                           data-options="required:true" style="width:200px">
+                           data-options="required:true" style="width:200px" /><font color="red">*</font><font color="red" id = "sp1"></font>
                 </td>
             </tr>
             <tr>
@@ -90,7 +95,7 @@
                     <input type="hidden" id="deleted" name="deleted" >
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td colspan="2">
                     <button onclick="submitForm()" class="easyui-linkbutton" type="button"
                             data-options="iconCls:'icon-ok'">保存
@@ -99,12 +104,15 @@
                             data-options="iconCls:'icon-undo'">重置
                     </button>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <input name="paramData" id="paramData" style="display:none;">
     </form>
 </div>
-
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">关闭</a>
+</div>
 <script>
     //初始化树形下拉框
     $('#deptid').combotree({

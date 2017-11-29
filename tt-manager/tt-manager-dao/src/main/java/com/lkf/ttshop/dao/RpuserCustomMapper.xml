@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lkf.ttshop.dao.RpuserCustomMapper" >
-
   <sql id="Base_Column_List" >
     i.Id, i.useraccount, i.password, i.username, i.Sex, i.Mobile, i.Email, i.userstatus, i.DeptId, i.Deleted,
     i.userremark,c.deptname
@@ -32,6 +31,44 @@
     <include refid="Where_Clause"/>
     order by i.id asc
     limit #{page.offset},#{page.rows}
+  </select>
+  <update id="updateUser" >
+    UPDATE  rpuser i
+    <set>
+      <if test="useraccount != '' and useraccount != null ">
+        useraccount = #{useraccount},
+      </if>
+      <if test="password != '' and password != null ">
+        password = #{password},
+      </if>
+      <if test="username != '' and username != null">
+        username = #{username},
+      </if>
+      <if test="sex != '' and sex != null">
+        sex = #{sex},
+      </if>
+      <if test="mobile != '' and mobile != null ">
+        mobile = #{mobile},
+      </if>
+      <if test="email != '' and email != null ">
+        email = #{email},
+      </if>
+      <if test="userstatus != '' and userstatus != null ">
+        userstatus = #{userstatus},
+      </if>
+      <if test="deleted != '' and deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="userremark != '' and userremark != null ">
+        userremark = #{userremark},
+      </if>
+    </set>
+    WHERE  id = #{id}
+  </update>
+  <select id="selectByUserName" resultType="com.lkf.ttshop.pojo.vo.RpUserCustom">
+    select *
+    from rpuser
+    where username = #{username}
   </select>
   <select id="couontUsers" resultType="long">
     select

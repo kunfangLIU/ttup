@@ -9,9 +9,11 @@ import com.lkf.ttshop.pojo.po.RproleExample;
 import com.lkf.ttshop.pojo.vo.RpRoleCustom;
 import com.lkf.ttshop.pojo.vo.RpRoleQuery;
 import com.lkf.ttshop.service.RpRoleService;
+import com.lkf.ttshop.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,5 +69,17 @@ public class RpRoleServiceImpl implements RpRoleService {
         RproleExample.Criteria criteria = example.createCriteria();
         criteria.andIdIn(ids);
         return rproleDao.updateByExampleSelective(rprole,example);
+    }
+
+    /**
+     * 添加角色信息业务逻辑层实现类
+     * @param rprole
+     * @return
+     */
+    @Override
+    public int saveRole(Rprole rprole) {
+        BigDecimal rpRoleId = BigDecimal.ONE.valueOf(IDUtils.getItemId());
+        rprole.setId(rpRoleId);
+        return rproleDao.insert(rprole);
     }
 }

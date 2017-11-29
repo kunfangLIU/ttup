@@ -1,103 +1,149 @@
 <%--
   User: CTKJ-0106
-  Date: 2017/11/24
-  Time: 15:51
+  Date: 2017/11/28
+  Time: 14:20
 --%>
-<script src="http://www.cnblogs.com/Resources/jquery-easyui-1.2.3/jquery-1.4.4.min.js" type="text/javascript"></script>
-<script src="http://www.cnblogs.com/Resources/jquery-easyui-1.2.3/jquery.easyui.min.js" type="text/javascript"></script>
-<link href="http://www.cnblogs.com/Resources/jquery-easyui-1.2.3/themes/default/easyui.css" rel="stylesheet"
-      type="text/css" />
-<link href="http://www.cnblogs.com/Resources/jquery-easyui-1.2.3/themes/icon.css" rel="stylesheet"
-      type="text/css" />
-<script src="http://www.cnblogs.com/Resources/jquery-easyui-1.2.3/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function () {
-        var datagrid; //定义全局变量datagrid
-        var editRow = undefined; //定义全局变量：当前编辑的行
-        datagrid = $("#dd").datagrid({
-        pagination: true, //显示分页
-            pageSize: 15, //页大小
-            pageList: [15, 30, 45, 60], //页大小下拉选项此项各value是pageSize的倍数
-            fit: true, //datagrid自适应宽度
-            fitColumn: false, //列自适应宽度
-            striped: true, //行背景交换
-            nowap: true, //列内容多时自动折至第二行
-            border: false,
-        columns: [[//显示的列
-            {field:'ck',checkbox:true},
-            {field:'id',title:'序号',width:100},
-            {field:'useraccount',title:'帐户',width:100},
-            {field:'username',title:'用户名',width:100},
-            {field:'sex',title:'性别',width:100},
-            {field:'mobile',title:'电话',width:100},
-            {field:'email',title:'邮箱',width:100},
-            {field:'userremark',title:'备注',width:100},
-            {field:'userstatus',title:'用户状态',formatter:function(value,row,index) {
-                switch (value) {
-                    case "0":
-                        return '禁用';
-                        break;
-                    case '1':
-                        return '启用';
-                        break;
-                    default:
-                        return '未知';
-                        break;
-                }
-            },
-    ]]
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<div class="easyui-panel" title="用户编辑" data-options="fit:true">
+    <form class="userForm" id="userAddForm" name="userAddForm" method="post">
+        <table style="width:100%;">
+            <tr>
+                <td class="label">帐户名：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" id="useraccount" name="useraccount" value="${rpuser.useraccount}"
+                           data-options="required:true" style="width:200px">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">用户名：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" id="username" name="username" value="${rpuser.username}"
+                           data-options="required:true" style="width:200px">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">用户密码：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" id="password" name="password" value="${rpuser.password}"
+                           data-options="required:true" style="width:200px">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">所属部门：</td>
+                <td>
+                    <input id="deptid" name="deptid" style="width:200px;">
+                </td>
+            </tr>
 
-        { text: '修改', iconCls: 'icon-edit', handler: function () {
-//修改时要获取选择到的行
-            var rows = datagrid.datagrid("getSelections");
-//如果只选择了一行则可以进行修改，否则不操作
-            if (rows.length == 1) {
-//修改之前先关闭已经开启的编辑行，当调用endEdit该方法时会触发onAfterEdit事件
-                if (editRow != undefined) {
-                    datagrid.datagrid("endEdit", editRow);
-                }
-//当无编辑行时
-                if (editRow == undefined) {
-//获取到当前选择行的下标
-                    var index = datagrid.datagrid("getRowIndex", rows[0]);
-//开启编辑
-                    datagrid.datagrid("beginEdit", index);
-//把当前开启编辑的行赋值给全局变量editRow
-                    editRow = index;
-//当开启了当前选择行的编辑状态之后，
-//应该取消当前列表的所有选择行，要不然双击之后无法再选择其他行进行编辑
-                    datagrid.datagrid("unselectAll");
-                }
-            }
-        }
-        }, '_',
-        { text: '保存', iconCls: 'icon-save', handler: function () {
-//保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
-            datagrid.datagrid("endEdit", editRow);
-        }
-        }, '_',
-        { text: '取消编辑', iconCls: 'icon-redo', handler: function () {
-//取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
-            editRow = undefined;
-            datagrid.datagrid("rejectChanges");
-            datagrid.datagrid("unselectAll");
-        }
-        }, '_'
-        onAfterEdit: function (rowIndex, rowData, changes) {
-//endEdit该方法触发此事件
-            console.info(rowData);
-            editRow = undefined;
+            <tr>
+                <td class="label">用户状态：</td>
+                <td>
+                    <select id="userstatus" class="easyui-combobox" name="userstatus"  data-options="required:true" style="width:200px;">
+                        <option value = " ">全部</option>
+                        <option value = "1">启用</option>
+                        <option value = "0">禁用</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">手机：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" id="mobile" name="mobile" value="${rpuser.mobile}"
+                           data-options="required:false" style="width:200px">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">邮箱：</td>
+                <td>
+
+                    <input class="easyui-textbox" type="text" id="email" name="email" value="${rpuser.email}"
+                           data-options="required:false" style="width:200px;">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">性别：</td>
+                <td>
+                    <input type="radio" name="sex" value="男" checked = "checked"><span>男</span>
+                    <input type="radio" name="sex" value="女"><span>女</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">备注：</td>
+                <td>
+                    <input class="easyui-textbox" type="text" id="userremark" name="userremark" value="${rpuser.userremark}"
+                           data-options="validType:'length[0,150]',multiline:true" style="width:200px;">
+                </td>
+            </tr>
+            <tr>
+                <%-- <td class="label" >是否删除：</td>--%>
+                <td>
+                    <%--<select id="deletedView" class="easyui-combobox"  data-options="required:true" name="deletedView" style="width:200px;">
+                        <option value="aa">全部</option>
+                        <option>是</option>
+                        <option>否</option>
+                    </select>--%>
+                <td>
+                    <input class="easyui-numberbox" type="hidden" id="priceView" name="priceView">
+                    <input type="hidden" id="deleted" name="deleted" >
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="submitForm()" class="easyui-linkbutton" type="button"
+                            data-options="iconCls:'icon-ok'">保存
+                    </button>
+                    <button onclick="clearForm()" class="easyui-linkbutton" type="button"
+                            data-options="iconCls:'icon-undo'">重置
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <input name="paramData" id="paramData" style="display:none;">
+    </form>
+</div>
+
+<script>
+    //初始化树形下拉框
+    $('#deptid').combotree({
+        url: 'userCats?parentId=0',
+        required: true,
+        onBeforeExpand:function(node){
+            //首先获取combotree组件中的树，再获取到树中选项
+            var options = $('#deptid').combotree('tree').tree('options');
+            //通过修改url用来点击
+            options.url = 'userCats?parentId=' + node.id;
         },
-        onDblClickRow: function (rowIndex, rowData) {
-//双击开启编辑行
-            if (editRow != undefined) {
-                datagrid.datagrid("endEdit", editRow);
+        onBeforeSelect:function(node){
+            //如果是最终的类别返回true，否则返回false
+            var isLeaf = $('#deptId').tree('isLeaf',node.target);
+            if(!isLeaf){
+                $.messager.alert('警告','没有选中最终类目','warning');
+                return false;
             }
-            if (editRow == undefined) {
-                datagrid.datagrid("beginEdit", rowIndex);
-                editRow = rowIndex;
-            }
+
         }
     });
-    });
+    //用来提交表单的操作
+    function submitForm() {
+        $('#userAddForm').form('submit', {
+            //提交给后台处理的URL地址
+            url: 'user',
+            //提交前的动作，如果返回false阻止提交
+            onSubmit: function () {
+                //给商品价格隐藏域设值
+                $('#deleted').val($('#priceView').val()*100);
+                //this:DOM对象
+                //$(this)：jquery对象
+                return $(this).form('validate');
+            },
+            //提交处理成功后的动作
+            success: function () {
+                console.log('success');
+            }
+        })
+    }
+
 </script>

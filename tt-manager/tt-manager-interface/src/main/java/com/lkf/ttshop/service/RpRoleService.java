@@ -39,4 +39,11 @@ public interface RpRoleService {
      */
     int removeRoles(String b, List<Long> ids);
 
+    /**
+     * 添加角色信息集合
+     * @param rprole
+     * @return
+     */
+    int saveRole(Rprole rprole);
+
 }
